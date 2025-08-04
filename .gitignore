@@ -1,0 +1,42 @@
+# ROS 2 Build Artifacts
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# Python & C++ Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.o
+*.a
+*.dylib
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE & Editor Configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ROS Bag & Recording Files
+*.bag
+*.db3
+*.mcap
+
+# Environment & Credentials
+.env
+*.key
+*.pem
+credentials.yaml
+secrets/
+
+# Temporary and Log Files
+*.log
+*.tmp
+*.bak

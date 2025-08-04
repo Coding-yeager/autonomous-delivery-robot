@@ -1,0 +1,14 @@
+# Autonomous Delivery Robot - Python Dependencies
+# Target Platform: Raspberry Pi 4B (Ubuntu 22.04 LTS / ROS 2 Humble)
+
+numpy>=1.21.0
+pyserial>=3.5
+smbus2>=0.4.2
+pyyaml>=6.0
+scipy>=1.7.0
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Optional Raspberry Pi GPIO libraries (uncomment when running on real hardware)
+# RPi.GPIO>=0.7.1
+# pigpio>=1.78
