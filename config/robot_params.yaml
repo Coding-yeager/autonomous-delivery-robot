@@ -1,0 +1,51 @@
+# ==============================================================================
+# Autonomous Delivery Robot - Robot Parameters Configuration
+# IIT Mandi Autonomous Robotics
+# ==============================================================================
+
+robot_base_controller:
+  ros__parameters:
+    # Hardware Physical Dimensions
+    wheel_radius: 0.075                 # meters (150 mm diameter drive wheels)
+    wheel_separation: 0.400             # meters (400 mm track width between contact patches)
+    encoder_ticks_per_rev: 1920         # 16 CPR motor shaft encoder * 120:1 planetary gearbox
+
+    # Motor Driver GPIO Pinout (Raspberry Pi 4B BCM numbering)
+    left_motor_pwm_pin: 12              # Hardware PWM0 (GPIO 12)
+    left_motor_dir_pin: 23              # Direction pin
+    right_motor_pwm_pin: 13             # Hardware PWM1 (GPIO 13)
+    right_motor_dir_pin: 24             # Direction pin
+    pwm_frequency: 20000                # Hz (ultrasonic 20kHz to eliminate motor whining)
+
+    # Encoder GPIO Pins (Quadrature Phase A & B)
+    left_encoder_pin_a: 17
+    left_encoder_pin_b: 27
+    right_encoder_pin_a: 22
+    right_encoder_pin_b: 10
+
+    # Kinematics & Velocity Limits (Campus Pathway Safety)
+    max_linear_velocity: 0.60           # m/s (~2.16 km/h safe pedestrian speed)
+    min_linear_velocity: -0.30          # m/s (safe reverse speed)
+    max_angular_velocity: 0.80          # rad/s (~45 deg/s)
+    max_linear_acceleration: 0.50       # m/s^2 (prevents food payload tipping on slopes)
+    max_angular_acceleration: 1.00      # rad/s^2
+
+    # Safety & Watchdog
+    cmd_vel_timeout: 0.50               # seconds (stops motors if /cmd_vel stops arriving)
+    estop_pin: 25                       # Physical Emergency Stop sense pin (pull-up)
+    relay_pin: 18                       # Power relay for motor isolation
+
+    # Odometry Publishing Configuration
+    publish_rate: 50.0                  # Hz (odometry loop frequency)
+    odom_frame_id: "odom"
+    base_frame_id: "base_footprint"
+    publish_tf: false                   # Disabled because EKF publishes dynamic odom -> base_footprint
+
+    # Odometry Measurement Covariance (Diagonal Elements)
+    # [x, y, z, roll, pitch, yaw]
+    pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.003]
+    # [vx, vy, vz, vroll, vpitch, vyaw]
+    twist_covariance_diagonal: [0.002, 0.002, 1000000.0, 1000000.0, 1000000.0, 0.005]
+
+    # Hardware Mode
+    use_mock_hardware: true             # Set to false when running on real Raspberry Pi 4B
