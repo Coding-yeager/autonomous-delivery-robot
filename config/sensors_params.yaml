@@ -1,0 +1,62 @@
+# ==============================================================================
+# Sensor Driver Parameters Configuration
+# RPLIDAR A1M8, Holybro NEO-M9N GNSS, MPU-6050 IMU, Health Monitor
+# ==============================================================================
+
+rplidar_node:
+  ros__parameters:
+    serial_port: "/dev/rplidar"           # Bound via udev rule (FTDI/CP2102)
+    serial_baudrate: 115200
+    frame_id: "laser_frame"
+    inverted: false
+    angle_compensate: true
+    scan_mode: "Standard"                 # 5.5 - 10 Hz suitable for Pi 4B CPU budget
+    scan_frequency: 7.0
+
+mpu6050_node:
+  ros__parameters:
+    i2c_bus: 1                            # /dev/i2c-1 on Raspberry Pi 4B (Pins 3 & 5)
+    i2c_address: 0x68                     # Default AD0 pin low
+    frame_id: "imu_link"
+    publish_rate: 50.0                    # Hz
+    use_mock_sensor: true                 # Set to false on actual physical I2C bus
+
+    # Factory/Calibrated Offsets
+    accel_offset_x: 0.02
+    accel_offset_y: -0.01
+    accel_offset_z: 0.05
+    gyro_offset_x: 0.0012
+    gyro_offset_y: -0.0024
+    gyro_offset_z: 0.0008
+
+    # Noise Covariance
+    linear_acceleration_stdev: 0.08       # m/s^2
+    angular_velocity_stdev: 0.005         # rad/s
+    orientation_stdev: 0.02               # rad
+
+    # Campus Mountainous Terrain Slope Protection
+    max_allowable_pitch_deg: 16.0         # Exceeding 16 deg on IIT Mandi slopes triggers caution
+    max_allowable_roll_deg: 12.0          # Avoid rollover risk on uneven shoulders
+
+gps_node:
+  ros__parameters:
+    serial_port: "/dev/ttyGPS"            # Udev symlink for Holybro NEO-M9N
+    serial_baudrate: 38400
+    frame_id: "gps_link"
+    publish_rate: 5.0                     # 5 Hz GNSS fix rate
+    use_mock_sensor: true                 # Set to false on actual physical UART
+
+    # Quality Filtering Thresholds
+    min_satellites: 6                     # Discard fix if fewer than 6 satellites
+    max_hdop: 2.5                         # Discard degraded horizontal dilution of precision
+    speed_threshold_knots: 0.2            # Motion threshold
+
+sensor_health_monitor:
+  ros__parameters:
+    check_rate_hz: 2.0
+    timeout_lidar_sec: 1.0
+    timeout_imu_sec: 0.5
+    timeout_gps_sec: 2.5
+    timeout_odom_sec: 0.5
+    require_gps_fix: true
+    emergency_stop_topic: "/emergency_stop"
