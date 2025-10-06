@@ -1,0 +1,14 @@
+# NavSat Transform Node Configuration
+navsat_transform:
+  ros__parameters:
+    frequency: 20.0
+    delay: 3.0
+    magnetic_declination_radians: 0.0150
+    yaw_offset: 0.0
+    zero_altitude: true
+    broadcast_cartesian_transform: false
+    publish_filtered_gps: true
+    use_odometry_yaw: false
+    wait_for_datum: true
+    # IIT Mandi Reference Datum [Latitude, Longitude, Heading, Map Frame, Base Link]
+    datum: [31.7815, 76.9943, 0.0, map, base_footprint]
