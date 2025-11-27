@@ -2,30 +2,30 @@
 
 **Project**: Autonomous Grocery and Food Delivery Robot for IIT Mandi Campus  
 **Institution**: Indian Institute of Technology Mandi  
-**Hardware Budget Limit**: ₹40,000 INR  
+**Hardware Budget Limit**: ₹70,000 INR  
 
 ---
 
 ## 1. Hardware Architecture Overview
 
-The robot's physical design prioritizes stability on mountainous slopes, high low-end torque for carrying up to 10 kg of food/groceries, and complete electrical isolation between noisy motor drivers and sensitive compute hardware.
+The robot's physical design prioritizes stability on mountainous slopes, high low-end torque for carrying up to 12 kg of food/groceries, and complete electrical isolation between noisy motor drivers and sensitive compute hardware.
 
 ```
 +----------------------------------------------------------------------------------+
-|                     12.8V 10Ah LiFePO4 Battery Pack (with BMS)                   |
+|                     12.8V 20Ah LiFePO4 Battery Pack (with BMS)                   |
 +-------------------+--------------------------------------+-----------------------+
                     |                                      |
-         Main Fuse (30A) + E-Stop Pushbutton               |
+         Main Fuse (40A) + E-Stop Pushbutton               |
                     |                                      |
                     v                                      v
        +-------------------------+            +-------------------------+
-       |   12V 30A Auto Relay    |            | LM2596 / Pololu 5V 5A   |
+       |   12V 40A Auto Relay    |            | Dual Synchronous 5V 10A |
        +------------+------------+            | Step-Down Buck Converter|
                     |                         +------------+------------+
                     v                                      | 5.1V clean DC
        +-------------------------+                         v
-       | Cytron MDD10A / Dual    |            +-------------------------+
-       | BTS7960 Motor Driver    |            |   Raspberry Pi 4B (4GB) |
+       | Cytron SmartDriveDuo-30 |            +-------------------------+
+       | Dual 30A Motor Driver   |            |   Raspberry Pi 4B (8GB) |
        +----+---------------+----+            +----+---------+--------+-+
             |               |                      |         |        |
             v               v                      v         v        v
@@ -62,15 +62,15 @@ All pin numbers below refer to the **BCM (Broadcom) GPIO numbering**, not physic
 
 ### 3.1 Main Compute: Raspberry Pi 4B
 - **Processor**: Broadcom BCM2711, Quad-core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz
-- **RAM**: 4 GB LPDDR4
+- **RAM**: 8 GB LPDDR4
 - **Operating System**: Ubuntu 22.04 LTS (64-bit ARM Server) + ROS 2 Humble Hawksbill
 - **Cooling**: Aluminum Armour Heatsink Case with Dual Active 5V Cooling Fans (prevents thermal throttling during continuous hill climbs).
 
-### 3.2 2D LiDAR: Slamtec RPLIDAR A1M8
+### 3.2 2D LiDAR: Slamtec RPLIDAR A2M8
 - **Technology**: Optical triangulation, 360-degree laser range scanner
-- **Range**: 0.15 m to 12.0 m
-- **Sampling Frequency**: 2,000–8,000 samples/sec
-- **Rotation Rate**: Configured to 7.0 Hz (optimized for Pi 4B CPU load)
+- **Range**: 0.15 m to 16.0 m
+- **Sampling Frequency**: 8,000–16,000 samples/sec
+- **Rotation Rate**: Configured to 10.0 Hz (high-speed outdoor scanning)
 - **Interface**: USB UART via Silicon Labs CP2102 adapter (mapped to `/dev/rplidar`)
 
 ### 3.3 GNSS / GPS: Holybro NEO-M9N

@@ -7,23 +7,23 @@
 ## 1. Power Distribution Schematic
 
 ```
-[12.8V 10Ah LiFePO4 Battery]
+[12.8V 20Ah LiFePO4 Battery]
        |
-       +--- [30A Blade Fuse]
+       +--- [40A Blade Fuse]
        |
        +--- [Physical E-Stop Switch (NC)]
        |
        +---------------------------------------------+
        |                                             |
        v                                             v
-[12V 30A Relay (NO contacts)]               [5V 5A Step-Down Buck Converter]
+[12V 40A Relay (NO contacts)]               [Dual 5V 10A Synchronous Buck]
        |                                             |
        | Switched 12V Motor Rail                     v Regulated 5.1V
        v                                    +--------------------------------+
-[Cytron MDD10A Motor Driver]                |  Raspberry Pi 4B (USB-C / Pin) |
-       |                                    |  RPLIDAR A1M8 (USB 5V)         |
+[Cytron SmartDriveDuo-30 Driver]            |  Raspberry Pi 4B (USB-C / Pin) |
+       |                                    |  RPLIDAR A2M8 (USB 5V)         |
        +---> Left Motor (12V)               |  Holybro NEO-M9N (5V Pin)      |
-       +---> Right Motor (12V)              |  MPU-6050 IMU (3.3V Pin)       |
+       +---> Right Motor (12V)              |  Precision IMU (3.3V Pin)      |
                                             +--------------------------------+
 ```
 

@@ -4,11 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%204B%20(Ubuntu%2022.04)-orange.svg)](https://ubuntu.com/download/raspberry-pi)
 [![Tests: 19 Passed](https://img.shields.io/badge/Unit%20Tests-19%20Passed-brightgreen.svg)](tests/)
-[![Budget](https://img.shields.io/badge/Hardware%20Budget-%E2%82%B939%2C950%20%2F%20%E2%82%B940%2C000-success.svg)](hardware/bill_of_materials.md)
+[![Budget](https://img.shields.io/badge/Hardware%20Budget-%E2%82%B969%2C900%20%2F%20%E2%82%B970%2C000-success.svg)](hardware/bill_of_materials.md)
 
 An end-to-end, production-grade autonomous mobile delivery robot engineered for transporting groceries, food orders, and essential supplies across the mountainous road network and pedestrian pathways of the **IIT Mandi Campus** (Kamand Valley, Himachal Pradesh).
 
-Developed as an autonomous robotics engineering project by a 7-member team within a strict hardware budget limit of **₹40,000 INR**.
+Developed as an autonomous robotics engineering project by a 3-member team within a strict hardware budget limit of **₹70,000 INR**.
 
 ---
 
@@ -83,24 +83,25 @@ This autonomous delivery robot operates as an autonomous carrier that navigates 
 
 ---
 
-## 4. Hardware Bill of Materials (Budget: ₹40,000 INR)
+## 4. Hardware Bill of Materials (Budget: ₹70,000 INR)
 
 | Component | Model / Specification | Purpose | Cost (₹) |
 | :--- | :--- | :--- | :---: |
-| **Main Compute** | Raspberry Pi 4B (4GB RAM) + Heatsink Fan | Onboard ROS 2 processing | ₹7,150 |
-| **MicroSD Storage** | SanDisk Extreme 64GB U3 A2 | High-speed OS & logging | ₹800 |
-| **2D Laser Scanner** | Slamtec RPLIDAR A1M8 (360°, 12m) | Obstacle sensing & 2D SLAM | ₹8,500 |
-| **GNSS Receiver** | Holybro NEO-M9N + Active Antenna | Global coordinate positioning | ₹4,800 |
-| **IMU Sensor** | MPU-6050 (6-DOF Gyro + Accel) | Angular rate, tilt, & heading | ₹250 |
-| **Drive Motors** | 2x 12V Planetary Geared DC Motors (120:1) | Differential locomotion | ₹5,200 |
-| **Wheel Encoders** | 2x Quadrature Hall Effect (1920 ticks/rev) | Dead-reckoning odometry | Included |
-| **Motor Driver** | Cytron MDD10A Dual 10A H-Bridge | Motor PWM & direction drive | ₹2,800 |
-| **Battery Pack** | 12.8V 10Ah LiFePO4 with BMS | Primary mobile power source | ₹5,200 |
-| **Step-Down Regulator**| High-Efficiency 5V 5A Buck Converter | Clean 5.1V power to Pi & LiDAR | ₹450 |
-| **Safety E-Stop & Relay**| 22mm Latching Mushroom Button + 12V 30A Relay | Hardware emergency power cutoff | ₹600 |
-| **Chassis & Wheels** | 2020 Aluminum extrusion frame + 150mm Wheels | Mechanical base structure | ₹3,400 |
-| **Cargo Box & Wiring** | Insulated poly delivery compartment + XT60 cables | Food cargo & power cabling | ₹800 |
-| **TOTAL:** | | | **₹39,950** |
+| **Main Compute** | Raspberry Pi 4B (8GB RAM) + Heatsink Case | Onboard ROS 2 processing | ₹9,150 |
+| **MicroSD Storage** | SanDisk Extreme Pro 128GB U3 A2 | High-speed OS & logging | ₹1,500 |
+| **2D Laser Scanner** | Slamtec RPLIDAR A2M8 (360°, 12-16m) | Obstacle sensing & 2D SLAM | ₹15,500 |
+| **GNSS Receiver** | Holybro NEO-M9N Multi-Band + Antenna | Global coordinate positioning | ₹5,800 |
+| **IMU Sensor** | Precision 6-DOF (Gyro + Accelerometer) | Angular rate, tilt, & heading | ₹850 |
+| **Cliff / ToF Sensors** | 4x Downward Ultrasonic/ToF Ranging Sensors | Real-time stairs drop-off detection | ₹1,800 |
+| **Drive Motors** | 2x 12V Planetary Geared DC Motors (120:1, 28 kg.cm)| High-torque slope locomotion | ₹7,200 |
+| **Wheel Encoders** | 2x Quadrature Encoders (1920 ticks/rev) | Dead-reckoning odometry | Included |
+| **Motor Driver** | Cytron SmartDriveDuo-30 Dual 30A H-Bridge | Motor PWM & direction drive | ₹5,400 |
+| **Battery Pack** | 12.8V 20Ah LiFePO4 with 40A Smart BMS | Primary power (~5.2 hr endurance) | ₹12,800 |
+| **Step-Down Regulators**| Dual Synchronous 5V 10A Buck Converters | Isolated clean power rails | ₹1,100 |
+| **Safety E-Stop & Relay**| 22mm IP65 Mushroom Button + 40A Heavy Relay | Hardware emergency power cutoff | ₹850 |
+| **Chassis & Wheels** | 2040/2020 Aluminum frame + 160mm Wheels | Mechanical base structure | ₹5,800 |
+| **Cargo Box & Wiring** | Insulated weatherproof container + XT90 wires | Food cargo bay & cabling | ₹2,150 |
+| **TOTAL:** | | | **₹69,900** |
 
 *Detailed wiring tables and power budget analysis are provided in [hardware/wiring_diagram.md](hardware/wiring_diagram.md) and [hardware/power_budget.md](hardware/power_budget.md).*
 
@@ -247,7 +248,7 @@ autonomous_delivery_robot/
 │   └── navigation.md                  # Campus routing, slopes, & stairs avoidance
 │
 ├── hardware/
-│   ├── bill_of_materials.md           # ₹39,950 itemized budget breakdown
+│   ├── bill_of_materials.md           # ₹69,900 itemized budget breakdown
 │   ├── wiring_diagram.md              # Electrical schematic and pin schedule
 │   └── power_budget.md                # 12.8V LiFePO4 battery sizing and runtime
 │
@@ -287,5 +288,5 @@ autonomous_delivery_robot/
 ## 12. Team & Acknowledgments
 
 - **Institution**: Indian Institute of Technology Mandi (IIT Mandi)
-- **Project Team**: Group of 7 Student Engineers
+- **Project Team**: Group of 3 Student Engineers
 - **Faculty & Mentors**: School of Computing and Electrical Engineering (SCEE) & School of Mechanical and Materials Engineering (SMME), IIT Mandi.
