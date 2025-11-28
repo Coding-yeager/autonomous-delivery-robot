@@ -2,7 +2,7 @@
 
 **Project**: Autonomous Grocery and Food Delivery Robot for IIT Mandi Campus  
 **Institution**: Indian Institute of Technology Mandi  
-**Team Size**: 3 Members  
+**Team Size**: 6 Members  
 **Total Allocated Budget Limit**: ₹70,000 INR  
 
 ---
