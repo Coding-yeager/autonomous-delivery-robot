@@ -9,7 +9,7 @@
 An end-to-end, production-grade autonomous mobile delivery robot engineered for transporting groceries, food orders, and essential supplies across the mountainous road network and pedestrian pathways of the **IIT Mandi Campus** (Kamand Valley, Himachal Pradesh).
 
 Developed as an autonomous robotics engineering project by a 6-member team within a strict hardware budget limit of **₹70,000 INR**.
-
+ 
 ---
 
 ## 1. Project Overview
